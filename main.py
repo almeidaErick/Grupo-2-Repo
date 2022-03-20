@@ -1,16 +1,10 @@
-# This is a sample Python script.
+#Version inicial
+import requests
+search = input("Que quiere buscar?: ")
+url=f"https://api.wallapop.com/api/v3/general/search?keywords={search}%20&category_ids=12900&filters_source=seo_landing&longitude=-3.69196&latitude=40.41956&order_by=closest"
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+r = requests.get(url)
 
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+for elemento in r.json().get("search_objects"):
+    print(elemento.get("title"))
+    print(elemento.get("price"))
