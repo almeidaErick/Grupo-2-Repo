@@ -5,7 +5,7 @@ class Product:
         self.price = price
 
 
-    def __str__(self, search):
+    def __str__(self):
 
         return "Hola"
 
