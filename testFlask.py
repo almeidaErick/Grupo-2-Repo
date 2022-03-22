@@ -1,16 +1,13 @@
 import json
 from flask import Flask, Response
 import requests
-from productInfo import Product
+#from productInfo import Product
 
 app = Flask(__name__)
 
 @app.route("/")
-def hello_world():
-    # Anadir mensaje de bienvenida que se pueda observar en postman y/o navegador
-    # no se necesita parametro
-    # LUIS
-    return "QUE MAS VE"
+def wellcome():
+    return "BIENVENIDOS A LA DEMOSTRCION DEL USO DE UNA API TRATAMIENTO DE DATOS GRUPO 2"
 
 @app.route("/search")
 def search_method_keyword():
