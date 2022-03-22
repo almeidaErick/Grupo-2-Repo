@@ -2,3 +2,4 @@
 RETO 1
 INTEGRANTES Grupo 2
 Luis Estevez
+Rudel Huancas

@@ -23,8 +23,15 @@ def search_method_keyword():
 def search_method_price():
     # Mandar todos productos que tengan un valor menor al valor que estemos mandando en la URL
     # se necesita parametro del tipo de producto y precio del producto
-    # RUDEL
-    return Response(json.dumps(build_url_request("libros")), status=200, mimetype="application/json")
+    # RUDEL H
+    productName = request.args.get("productName", "")
+    productPrice = request.args.get("productPrice", "")
+
+    productList = build_url_request(productName)
+    productsFiltered = list(filter(lambda product: product["price"] <= float(productPrice), productList))
+
+    return Response(json.dumps(productsFiltered[:1]), status=200, mimetype="application/json")
+    
 
 @app.route("/searchTop3HigherPrices")
 def search_higher_price():

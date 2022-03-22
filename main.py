@@ -8,3 +8,4 @@ r = requests.get(url)
 for elemento in r.json().get("search_objects"):
     print(elemento.get("title"))
     print(elemento.get("price"))
+
