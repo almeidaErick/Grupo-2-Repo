@@ -3,6 +3,7 @@ class Product:
     def __init__(self, product, price,search):
         self.product = product
         self.price = price
+        self.search = search
 
     def __str__(self):
         url=f"https://api.wallapop.com/api/v3/general/search?keywords={self.search}%20&category_ids=12900&filters_source=seo_landing&longitude=-3.69196&latitude=40.41956&order_by=closest"
