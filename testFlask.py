@@ -1,5 +1,5 @@
 import json
-from flask import Flask, Response
+from flask import Flask, Response, request
 import requests
 from productInfo import Product
 
@@ -16,8 +16,10 @@ def hello_world():
 def search_method_keyword():
     # Mandar el keyword mediante el URL y anadirlo a la busqueda API (mostrar todos los productos)
     # se necesita parametro del tipo de producto
-    # DANI
-    return Response(json.dumps(build_url_request("libros")), status=200, mimetype="application/json")
+
+    productName = request.args.get("productName", "")
+
+    return Response(json.dumps(build_url_request(productName)), status=200, mimetype="application/json")
 
 @app.route("/searchLowerPrice")
 def search_method_price():
@@ -49,12 +51,12 @@ def build_url_request(searchParameter, status=""):
         url = f"https://api.wallapop.com/api/v3/general/search?keywords={searchParameter}&filters_source=quick_filters&latitude=40.418965&longitude=-3.711781&condition={status}"
 
     r = requests.get(url)
-    product_list = []
+    product_list = []#Creamos la lista vacía
 
     for elemento in r.json().get("search_objects"):
         title_dict = {"title": elemento.get("title"), "description": elemento.get("description"),
                       "price": elemento.get("price"), "currency": elemento.get("currency")}
-        product_list.append(title_dict)
+        product_list.append(title_dict)#Creamos la lista de diccionarios
 
     return product_list
 
