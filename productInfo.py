@@ -5,8 +5,10 @@ class Product:
 
     def __str__(self):
         # complete this
+        # STEVEN
         return
 
     def to_dict(self):
         # complete this
+        # JORGE
         return
