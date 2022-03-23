@@ -17,7 +17,3 @@ pandas
 scikit-learn
 Jupyter notebook
 dagster (analisis de datos a nivel empresarial)
-
-
-
-ANADIR NUEVOS ENDPOINTS EN ESTA RAMA
