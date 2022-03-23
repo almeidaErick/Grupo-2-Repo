@@ -1,5 +1,5 @@
 import json
-from flask import Flask, Response
+from flask import Flask, Response,request
 import requests
 from productInfo import Product
 
@@ -38,7 +38,12 @@ def search_item_condition():
     # Mandar todos los items que se estan buscando depende de su condicion de uso
     # se necesita parametro y la condicion del producto
     # CARLOS
-    return Response(json.dumps(build_url_request("libros")), status=200, mimetype="application/json")
+    # URL: 127.0.0.1:5000/searchProductCondition?productName=ps4&productcondition=fair
+    # Parametros: new/as_good_as_new/good/fair/has_given_it_all
+    productName = request.args.get("productName", "")
+    productcondition = request.args.get("productcondition", "")
+
+    return Response(json.dumps(build_url_request(productName,productcondition)), status=200, mimetype="application/json")
 
 def build_url_request(searchParameter, status=""):
     # Usar clase Producto para organizar la informacion y devolver un diccionario armado desde esa clase
