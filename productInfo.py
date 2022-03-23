@@ -1,4 +1,5 @@
 class Product:
+
     def __init__(self, product, price, description,currency):
         self.product = product
         self.price = price
@@ -6,9 +7,8 @@ class Product:
         self.currency = currency
 
     def __str__(self):
-        # complete this
         # STEVEN
-        return
+        return f"producto:{self.product}, precio:{self.price}, descripcion:{self.description}, currency:{self.currency}"
 
     def to_dict(self):
         # complete this
