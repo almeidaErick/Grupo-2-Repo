@@ -1,23 +1,34 @@
 import json
+
 from flask import Flask, Response, request
+
 import requests
-from productInfo import Product
+#from productInfo import Product
 
 app = Flask(__name__)
 
 @app.route("/")
-def hello_world():
-    # Anadir mensaje de bienvenida que se pueda observar en postman y/o navegador
-    # no se necesita parametro
-    # LUIS
-    return "QUE MAS VE"
+def wellcome():
+    mensaje = """
+            BIENVENIDOS A LA DEMOSTRCION DEL USO DE UNA API 
+                     TRATAMIENTO DE DATOS GRUPO 2
+            Para esta demostracion se ha creado 5 funciones que pueden ser ejecutadas a traves de http://127.0.0.1:5000
+            1.- /search listar todos los productos basados en el parametros keyword que estamos enviando.
+            2.- /searchLowerPrice listar todos productos que tengan un valor menor al valor que estemos enviando en la URL.
+            3.- /searchTop3HigherPrices listar los 3 productos mas caros con respecto al valor enviado en la URL.
+            4.- /searchProductCondition listar todos los productos que se estan buscando en base a su condicion de uso.
+            5.- build_url_request Usar clase Producto para organizar la informacion y devolver un diccionario armado desde esa clase.
+    """
+    return Response(mensaje, status=200, mimetype="text/plain")
 
 @app.route("/search")
 def search_method_keyword():
     # Mandar el keyword mediante el URL y anadirlo a la busqueda API (mostrar todos los productos)
     # se necesita parametro del tipo de producto
-    # DANI
-    return Response(json.dumps(build_url_request("libros")), status=200, mimetype="application/json")
+
+    productName = request.args.get("productName", "")
+
+    return Response(json.dumps(build_url_request(productName)), status=200, mimetype="application/json")
 
 @app.route("/searchLowerPrice")
 def search_method_price():
@@ -44,7 +55,12 @@ def search_item_condition():
     # Mandar todos los items que se estan buscando depende de su condicion de uso
     # se necesita parametro y la condicion del producto
     # CARLOS
-    return Response(json.dumps(build_url_request("libros")), status=200, mimetype="application/json")
+    # URL: 127.0.0.1:5000/searchProductCondition?productName=ps4&productcondition=fair
+    # Parametros: new/as_good_as_new/good/fair/has_given_it_all
+    productName = request.args.get("productName", "")
+    productcondition = request.args.get("productcondition", "")
+
+    return Response(json.dumps(build_url_request(productName,productcondition)), status=200, mimetype="application/json")
 
 def build_url_request(searchParameter, status=""):
     # Usar clase Producto para organizar la informacion y devolver un diccionario armado desde esa clase
@@ -55,12 +71,12 @@ def build_url_request(searchParameter, status=""):
         url = f"https://api.wallapop.com/api/v3/general/search?keywords={searchParameter}&filters_source=quick_filters&latitude=40.418965&longitude=-3.711781&condition={status}"
 
     r = requests.get(url)
-    product_list = []
+    product_list = []#Creamos la lista vacía
 
     for elemento in r.json().get("search_objects"):
-        title_dict = {"title": elemento.get("title"), "description": elemento.get("description"),
-                      "price": elemento.get("price"), "currency": elemento.get("currency")}
-        product_list.append(title_dict)
+
+        product=Product(elemento.get("title"),elemento.get("price"),elemento.get("description"),elemento.get("currency"))
+        product_list.append(product.to_dict())
 
     return product_list
 
