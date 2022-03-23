@@ -11,4 +11,4 @@ class Product:
     def to_dict(self):
         # complete this
         # JORGE
-        return
+        return {"product":self.product,"price":self.price}
