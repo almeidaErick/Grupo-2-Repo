@@ -42,7 +42,13 @@ def search_higher_price():
     # Mandar los 3 productos mas caros con respecto al valor dado en la URL
     # se necesita parametro del tipo de producto y precio
     # ERICK
-    return Response(json.dumps(build_url_request("libros")), status=200, mimetype="application/json")
+    productName = request.args.get("productName", "")
+    productPrice = request.args.get("productPrice", "")
+
+    productList = build_url_request(productName)
+    productsFiltered = list(filter(lambda product: product["price"] >= float(productPrice), productList))
+
+    return Response(json.dumps(productsFiltered[:3]), status=200, mimetype="application/json")
 
 @app.route("/searchProductCondition")
 def search_item_condition():
