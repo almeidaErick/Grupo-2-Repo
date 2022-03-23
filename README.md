@@ -1,7 +1,7 @@
 # Grupo-2-Repo
 ####RETO 1
 
-###INTEGRANTES Grupo 2
+###INTEGRANTES Grupo 2 (V2.0)
 
 Steven Vinueza
 
