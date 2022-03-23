@@ -2,4 +2,23 @@
 RETO 1
 INTEGRANTES Grupo 2
 Luis Estevez
-Rudel Huancas
+
+Toosl para usar
+
+Pycharm
+Postman
+Chrome
+Herramientas de desarrollo de Python (pip)
+Librerías de Python:
+requests
+flask
+beautifulsoup4
+pandas
+scikit-learn
+Jupyter notebook
+dagster (analisis de datos a nivel empresarial)
+
+
+
+ANADIR NUEVOS ENDPOINTS EN ESTA RAMA
+
