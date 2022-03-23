@@ -52,9 +52,8 @@ def build_url_request(searchParameter, status=""):
     product_list = []
 
     for elemento in r.json().get("search_objects"):
-        title_dict = {"title": elemento.get("title"), "description": elemento.get("description"),
-                      "price": elemento.get("price"), "currency": elemento.get("currency")}
-        product_list.append(title_dict)
+        product=Product(elemento.get("title"),elemento.get("price"),elemento.get("description"),elemento.get("currency"))
+        product_list.append(product.to_dict())
 
     return product_list
 
