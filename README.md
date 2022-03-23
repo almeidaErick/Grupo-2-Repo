@@ -1,6 +1,6 @@
 # Grupo-2-Repo
 RETO 1
-INTEGRANTES Grupo2
+INTEGRANTES Grupo 2
 Luis Estevez
 
 Toosl para usar
@@ -21,3 +21,4 @@ dagster (analisis de datos a nivel empresarial)
 
 
 ANADIR NUEVOS ENDPOINTS EN ESTA RAMA
+
