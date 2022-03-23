@@ -1,16 +1,23 @@
 import json
 from flask import Flask, Response,request
 import requests
-from productInfo import Product
+#from productInfo import Product
 
 app = Flask(__name__)
 
 @app.route("/")
-def hello_world():
-    # Anadir mensaje de bienvenida que se pueda observar en postman y/o navegador
-    # no se necesita parametro
-    # LUIS
-    return "QUE MAS VE"
+def wellcome():
+    mensaje = """
+            BIENVENIDOS A LA DEMOSTRCION DEL USO DE UNA API 
+                     TRATAMIENTO DE DATOS GRUPO 2
+            Para esta demostracion se ha creado 5 funciones que pueden ser ejecutadas a traves de http://127.0.0.1:5000
+            1.- /search listar todos los productos basados en el parametros keyword que estamos enviando.
+            2.- /searchLowerPrice listar todos productos que tengan un valor menor al valor que estemos enviando en la URL.
+            3.- /searchTop3HigherPrices listar los 3 productos mas caros con respecto al valor enviado en la URL.
+            4.- /searchProductCondition listar todos los productos que se estan buscando en base a su condicion de uso.
+            5.- build_url_request Usar clase Producto para organizar la informacion y devolver un diccionario armado desde esa clase.
+    """
+    return Response(mensaje, status=200, mimetype="text/plain")
 
 @app.route("/search")
 def search_method_keyword():
